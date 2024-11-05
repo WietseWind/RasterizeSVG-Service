@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.mjs",
   "scripts": {
-    "build:svg-hush": "source $HOME/.cargo/env && mkdir -p bin && cd bin && git clone https://github.com/cloudflare/svg-hush && cd svg-hush && cargo build --release",
+    "build:svg-hush": ". $HOME/.cargo/env && mkdir -p bin && cd bin && git clone https://github.com/cloudflare/svg-hush && cd svg-hush && cargo build --release",
     "build:deps": "npm install",
-    "build": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source $HOME/.cargo/env && npm run build:deps && npm run build:svg-hush",
+    "build": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . $HOME/.cargo/env && npm run build:deps && npm run build:svg-hush",
     "start": "node index.mjs",
     "start:prod": "pm2 start ecosystem.config.json",
     "stop": "pm2 stop rasterizesvg",
