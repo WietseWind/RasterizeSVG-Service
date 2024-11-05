@@ -407,21 +407,6 @@ app.get('/rasterize-svg', async (req, res) => {
     });
   }
 
-  // Add dimension validation error messages
-  if (req.query.width && (width === DEFAULT_SIZE)) {
-    return res.status(400).json({
-      error: 'Invalid width parameter',
-      message: `Width must be between ${MIN_SIZE} and ${MAX_SIZE} pixels`
-    });
-  }
-
-  if (req.query.height && (height === DEFAULT_SIZE)) {
-    return res.status(400).json({
-      error: 'Invalid height parameter',
-      message: `Height must be between ${MIN_SIZE} and ${MAX_SIZE} pixels`
-    });
-  }
-
   // Try to get from cache first
   try {
     const cached = await redis.getBuffer(cacheKey);
