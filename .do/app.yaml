@@ -7,32 +7,16 @@ services:
     build_command: npm run build
     run_command: npm run start:prod
     envs:
-      # Default port for DO App Platform
       - key: PORT
         scope: RUN_TIME
         type: GENERAL
         value: "8080"
-      # Redis URL should be set manually in DO dashboard
       - key: REDIS_URL
         scope: RUN_TIME
         type: SECRET
     instance_count: 1
     instance_size_slug: basic-xxs
     http_port: 8080
-
-jobs:
-  - name: install-dependencies
-    git:
-      repo_clone_url: https://github.com/WietseWind/RasterizeSVG-Service.git
-      branch: main
-    build_command: |-
-      # Install Rust and cargo
-      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-      source $HOME/.cargo/env
-      
-      # Install build essentials
-      apt-get update
-      apt-get install -y build-essential pkg-config
 
 # Build-time environment only
 build_env:
