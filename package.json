@@ -1,0 +1,26 @@
+{
+  "name": "rasterizesvg-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "start:prod": "pm2 start ecosystem.config.json",
+    "stop": "pm2 stop rasterizesvg",
+    "restart": "pm2 restart rasterizesvg",
+    "logs": "pm2 logs rasterizesvg",
+    "status": "pm2 status rasterizesvg",
+    "monit": "pm2 monit rasterizesvg"
+  },
+  "author": "Wietse Wind <w@xrpl-labs.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "helmet": "^8.0.0",
+    "ioredis": "^5.4.1",
+    "ip-address": "^10.0.1",
+    "pm2": "^5.4.2",
+    "sharp": "^0.33.5"
+  }
+}

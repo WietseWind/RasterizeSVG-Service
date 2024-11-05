@@ -1,0 +1,23 @@
+{
+    "apps": [{
+      "name": "rasterizesvg",
+      "script": "server.mjs",
+      "instances": "max",
+      "exec_mode": "cluster",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": 80,
+        "REDIS_URL": "redis://localhost:6379"
+      },
+      "watch": false,
+      "max_memory_restart": "1G",
+      "merge_logs": true,
+      "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+      "error_file": "logs/rasterizesvg-error.log",
+      "out_file": "logs/rasterizesvg-out.log",
+      "max_restarts": 10,
+      "restart_delay": 4000,
+      "listen_timeout": 8000,
+      "kill_timeout": 5000
+    }]
+  }
