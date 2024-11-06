@@ -416,6 +416,10 @@ app.get('/rasterize-svg', async (req, res) => {
       if (cacheStr.slice(0, 1) === '{' && cacheStr.slice(-1) === '}') {
         return res.json({ ...JSON.parse(cacheStr), cached: true, })
       }
+
+      res.setHeader('Cache-Control', 'public, max-age=8640'); // one tenth of a day
+      res.setHeader('Expires', new Date(Date.now() + 8640000).toUTCString()); // one tenth of a day
+
       if (clientPrefersImage(req)) {
         res.set('Content-Type', 'image/png');
         res.set('Content-Disposition', 'inline; filename="image.png"');
@@ -510,6 +514,9 @@ app.get('/rasterize-svg', async (req, res) => {
       // // Set appropriate headers and send PNG
       // res.set('Content-Type', 'image/png');
       // res.send(pngBuffer);
+
+      res.setHeader('Cache-Control', 'public, max-age=86400'); // 1d
+      res.setHeader('Expires', new Date(Date.now() + 86400000).toUTCString()); // 1d
 
       // Determine response format based on client
       if (clientPrefersImage(req)) {
